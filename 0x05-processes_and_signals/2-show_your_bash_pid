@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#Bash script that displays lines containing the BASH word
+#Thus allowing to easily get PID of your bash process
+#Cannot use pgrep
+#Third line of the script must be shellcheck display=SC2009
+ps auxf | grep "bash"
