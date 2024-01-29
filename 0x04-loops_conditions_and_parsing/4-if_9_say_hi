@@ -2,12 +2,13 @@
 #This displays "Best School" 10 times, and says "Hi" on the 9th iteration
 
 x=0
+
 while [ $x -lt 10 ]
 do
 	if [ $x -eq 9 ]
 	then
 		echo "Hi"
 	fi
-	echo "Best Scholl"
+	echo "Best School"
 	(( x++ ))
 done
