@@ -24,3 +24,20 @@ You must add to 0-simple_web_stack:
 * 1 load-balance (HAproxy)
 * 1 application files (your code base)
 * 1 database (MySQL)
+
+### 2-secured_and_monitored_web_infrastructure
+On a whiteboard, design a three server web infrastructure that hosts the website www.foobar.com, it must be secured, serve encrypted traffic, and be monitored.
+
+You must add:
+* 3 firewalls
+* 1 SSL certificate to serve `www.foobar.com` over HTTPS
+* monitoring clients (data collector for Sumologic or other monitoring services)
+
+### 3-scale_up
+On a whiteboard, a design that uses a load balancer to distribute traffic among multiple servers
+
+You must add:
+* 1 server
+* 1 load-balancer (HAproxy) configured as cluster with the other one
+* Split components (web server, application server, database) with their own server
+
