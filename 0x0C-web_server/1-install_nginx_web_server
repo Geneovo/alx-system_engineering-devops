@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Bash script to install and configure Nginx web server
+
+# Update package list
+apt-get update
+
+# Install Nginx with the -y option to automatically confirm the installation
+apt-get install -y nginx
+
+# Check if Nginx is installed
+if [ ! -x "$(command -v nginx)" ]; then
+	echo "Nginx installation failed."
+	exit 1
+fi
+
+# Start Nginx service
+service nginx start
+
+# Check Nginx status
+service nginx status
+
+# Ensure Nginx is running and lsitening on port 80
+if ! (netstat -tuln | grep -q ':80 '); then
+	echo "Nginx is not listening on port 80."
+	exit 1
+fi
+
+# Configure Nginx to return "Hello World!" at the root (/) location
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# Restart Nginx without using systemctl
+nginx -s reload
+
+# Verify Nginx configuration
+curl localhost | grep -q "Hello World!"
+
+if [ $? -eq 0 ]; then
+	echo "Nginx is configured correctly."
+else
+	echo "Nginx configuration check failed."
+	exit 1
+fi
