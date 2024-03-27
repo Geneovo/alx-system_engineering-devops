@@ -40,3 +40,17 @@ else
 	echo "Nginx configuration check failed."
 	exit 1
 fi
+
+# Check if Nginx returns a 200 ok status
+if ! (curl -sI localhost | grep -q "200 OK"); then
+	echo "Nginx did not return a 200 OK status."
+	exit 1
+fi
+
+# Check if Nginx is serving the correct default page
+if ! (curl localhost | grep -q "Welcome to nginx"); then
+	echo"Ni=ginx is not serving the correct default page."
+	exit 1
+fi
+
+exho "All checks passed. Nginx is fully configured."
